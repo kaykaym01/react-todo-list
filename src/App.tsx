@@ -20,10 +20,16 @@ function App() {
   }
 
   function deleteTodoItem(todoIndex: number) {
-    setTodos([...todos.splice(0, todoIndex), ...todos.splice(todoIndex + 1)]);
+    console.log("DELETING INDEX", todoIndex);
+    console.log("old todos", todos);
+
+    const updatedTodos = todos.filter((_, index) => index !== todoIndex);
+    setTodos(updatedTodos);
+    console.log("new todos", todos);
   }
 
   useEffect(() => {
+    console.log("todos changed", todos);
     localStorage.setItem("todos", JSON.stringify({ todos }));
   }, [todos]);
 
